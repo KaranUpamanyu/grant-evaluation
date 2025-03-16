@@ -66,7 +66,7 @@ for evaluator in evaluators:
 filename = "evaluations.csv"
 with open(filename, mode="w", newline="") as file:
     writer = csv.writer(file)
-    writer.writerow(["evaluator_id", "organization_id", "impact", "feasibility", "innovation", "evaluator_confidence",])
+    writer.writerow(["evaluator_id", "organization_id", "impact", "feasibility", "cost_effectiveness", "evaluator_confidence",])
     writer.writerows(evaluation_data)
 
 # Write organization requests to CSV file
