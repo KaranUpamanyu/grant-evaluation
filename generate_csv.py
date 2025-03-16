@@ -53,8 +53,8 @@ for evaluator in evaluators:
 # grant amount requested by organizations
 grant_requested_by_orgs = []
 for org_id, org_name in organizations.items():
-    requested_budget = random.randint(50000, 200000)  # Orgs request between 50K and 200K
-    grant_requested_by_orgs.append([org_id, org_name, requested_budget])
+    grant_requested = random.randint(50000, 200000)  # Orgs request between 50K and 200K
+    grant_requested_by_orgs.append([org_id, org_name, grant_requested])
 
 # assign random budgets to evaluators
 evaluator_budgets = []
@@ -72,7 +72,7 @@ with open(filename, mode="w", newline="") as file:
 # Write organization requests to CSV file
 with open("organizations.csv", mode="w", newline="") as file:
     writer = csv.writer(file)
-    writer.writerow(["organization_id", "organization_name", "requested_budget"])
+    writer.writerow(["organization_id", "organization_name", "grant_requested"])
     writer.writerows(grant_requested_by_orgs)
 
 # Write evaluator budgets to CSV file
