@@ -33,9 +33,11 @@ print(f"Total funds available: {total_funds}")
 
 
 # Allocate grants to organizations in proportion to their EU scores, compared to the sum of all EU scores
-organizations_df["grant_awarded"] = np.floor(organizations_df["EU_score"] / organizations_df["EU_score"].sum() * total_funds).astype(int)
-# Optionally, we can cap the grant amount at the requested amount. Replace the above line with the following line to do so:
-# organizations_df["grant_awarded"] = np.minimum(np.floor(organizations_df["EU_score"] / organizations_df["EU_score"].sum() * total_funds).astype(int), organizations_df["grant_requested"])
+# The grant amount is capped at the requested amount
+organizations_df["grant_awarded"] = np.minimum(np.floor(organizations_df["EU_score"] / organizations_df["EU_score"].sum() * total_funds).astype(int), organizations_df["grant_requested"])
+# Optionally, we can remove the cap on the grant amount at the requested amount.
+# But as a result, some orgs may receive significantly more than they requested, which may seem unfair.
+# organizations_df["grant_awarded"] = np.floor(organizations_df["EU_score"] / organizations_df["EU_score"].sum() * total_funds).astype(int)
 
 # Write the results to a CSV file
 organizations_df.to_csv("grant_allocation.csv", columns=["organization_id", "organization_name", "grant_requested", "grant_awarded"], index=False)
